@@ -3,7 +3,7 @@ import joblib
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, f1_score
 import os
 import yaml
 
@@ -15,7 +15,7 @@ def load_params(path="params.yaml"):
 
 def train(args):
     params = load_params()
-    df = pd.read_csv(params['data']['processed_path'])
+    df = pd.read_csv(params['data']['processed_base_path']+"_train.csv")
 
     X = df.drop('species', axis=1)
     y = df['species']
@@ -28,12 +28,10 @@ def train(args):
 
     preds = model.predict(X_val)
     acc = accuracy_score(y_val, preds)
+    f1 = f1_score(y_val, preds, average='weighted')
 
     os.makedirs('ckpt', exist_ok=True)
-
-    # Give informative name to the model file, such as accuracy and parameters
-    model_filename = f"ckpt/model_acc_{acc:.4f}_n_estimators_50.pkl"
-    joblib.dump(model, model_filename)
+    joblib.dump(model, 'ckpt/model.pkl')
 
     print(f"val_accuracy: {acc}")
 
