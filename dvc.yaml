@@ -12,10 +12,10 @@ stages:
       - model/train.py
       - ${data.processed_train_path}
     outs:
-      - models/model.pkl
+      - ckpt/model.pkl
   evaluate:
     cmd: python model/evaluate.py
     deps:
       - ${data.processed_val_path}
       - model/evaluate.py
-      - models/model.pkl
+      - ckpt/model.pkl

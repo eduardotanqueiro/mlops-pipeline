@@ -20,7 +20,6 @@ def train(args):
     X = df.drop('species', axis=1)
     y = df['species']
 
-
     X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42)
 
     model = RandomForestClassifier(n_estimators=50)
