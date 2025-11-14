@@ -6,7 +6,12 @@ def preprocess(input_path, output_path):
     df = pd.read_csv(input_path)
 
     df = df.dropna()
-    df.to_csv(output_path, index=False)
+
+    df_train = df[:int(0.8 * len(df))]
+    df_val = df[int(0.8 * len(df)):]
+
+    df_train.to_csv(output_path + "_train.csv", index=False)
+    df_val.to_csv(output_path + "_val.csv", index=False)
 
 
 if __name__ == '__main__':

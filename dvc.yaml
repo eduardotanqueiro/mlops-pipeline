@@ -1,7 +1,7 @@
 stages:
   preprocess:
-    cmd: python model/preprocess.py --input ${data.raw_path} --output ${data.processed_path}
+    cmd: python model/preprocess.py --input ${data.raw_path} --output ${data.processed_base_path}
     deps:
       - model/preprocess.py
     outs:
-      - ${data.processed_path}
+      - ${data.processed_processed_base_path}
