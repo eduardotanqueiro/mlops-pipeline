@@ -5,3 +5,15 @@ stages:
       - model/preprocess.py
     outs:
       - ${data.processed_processed_base_path}
+  train:
+    cmd: python model/train.py
+    deps:
+      - model/train.py
+      - ${data.processed_base_path}
+    outs:
+      - models/model.pkl
+  evaluate:
+    cmd: python model/evaluate.py
+    deps:
+      - model/evaluate.py
+      - models/model.pkl
