@@ -5,7 +5,7 @@ def preprocess(input_path, output_path):
     # First Minimal Preprocessing
     df = pd.read_csv(input_path)
 
-    df = df.dropna(thresh=2)
+    df = df.dropna()
     df.to_csv(output_path, index=False)
 
 
