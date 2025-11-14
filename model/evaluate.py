@@ -14,7 +14,7 @@ if __name__ == '__main__':
 
     model = joblib.load('ckpt/model.pkl')
     
-    df = pd.read_csv(params['data']['processed_base_path']+"_val.csv")
+    df = pd.read_csv(params['data']['processed_val_path'])
     
     X = df.drop('species', axis=1)
     y = df['species']

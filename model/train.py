@@ -15,7 +15,7 @@ def load_params(path="params.yaml"):
 
 def train(args):
     params = load_params()
-    df = pd.read_csv(params['data']['processed_base_path']+"_train.csv")
+    df = pd.read_csv(params['data']['processed_train_path'])
 
     X = df.drop('species', axis=1)
     y = df['species']
