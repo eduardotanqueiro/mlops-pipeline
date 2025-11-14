@@ -1,0 +1,51 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python model/preprocess.py --input data/penguins_size.csv 
+      --output_train data/processed_penguins_train.csv --output_val 
+      data/processed_penguins_val.csv
+    deps:
+    - path: model/preprocess.py
+      hash: md5
+      md5: 386379fbf09b41f1c7ac3eb78444cbb2
+      size: 1354
+    outs:
+    - path: data/processed_penguins_train.csv
+      hash: md5
+      md5: 4c0697a191bcbcf8c219e50623e4da24
+      size: 8093
+    - path: data/processed_penguins_val.csv
+      hash: md5
+      md5: d278ca9f17d243929f15e58e38d8c52d
+      size: 2093
+  train:
+    cmd: python model/train.py
+    deps:
+    - path: data/processed_penguins_train.csv
+      hash: md5
+      md5: 4c0697a191bcbcf8c219e50623e4da24
+      size: 8093
+    - path: model/train.py
+      hash: md5
+      md5: 1a90153a57cd4c51c3d8e518408ba24c
+      size: 1066
+    outs:
+    - path: ckpt/model.pkl
+      hash: md5
+      md5: d72931b82d46ba67bf7338c7792d689a
+      size: 114801
+  evaluate:
+    cmd: python model/evaluate.py
+    deps:
+    - path: ckpt/model.pkl
+      hash: md5
+      md5: d72931b82d46ba67bf7338c7792d689a
+      size: 114801
+    - path: data/processed_penguins_val.csv
+      hash: md5
+      md5: d278ca9f17d243929f15e58e38d8c52d
+      size: 2093
+    - path: model/evaluate.py
+      hash: md5
+      md5: 07526da30e96197eeb42f93002ff2228
+      size: 611

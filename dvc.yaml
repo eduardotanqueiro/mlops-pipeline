@@ -1,7 +1,21 @@
 stages:
   preprocess:
-    cmd: python model/preprocess.py --input ${data.raw_path} --output ${data.processed_path}
+    cmd: python model/preprocess.py --input ${data.raw_path} --output_train ${data.processed_train_path} --output_val ${data.processed_val_path}
     deps:
       - model/preprocess.py
     outs:
-      - ${data.processed_path}
+      - ${data.processed_train_path}
+      - ${data.processed_val_path}
+  train:
+    cmd: python model/train.py
+    deps:
+      - model/train.py
+      - ${data.processed_train_path}
+    outs:
+      - ckpt/model.pkl
+  evaluate:
+    cmd: python model/evaluate.py
+    deps:
+      - ${data.processed_val_path}
+      - model/evaluate.py
+      - ckpt/model.pkl
