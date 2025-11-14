@@ -1,0 +1,7 @@
+stages:
+  preprocess:
+    cmd: python model/preprocess.py --input ${data.raw_path} --output ${data.processed_path}
+    deps:
+      - model/preprocess.py
+    outs:
+      - ${data.processed_path}
