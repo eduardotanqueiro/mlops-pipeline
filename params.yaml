@@ -1,0 +1,4 @@
+data:
+  raw_path: data/penguins_size.csv
+  processed_train_path: data/processed_penguins_train.csv
+  processed_val_path: data/processed_penguins_val.csv
