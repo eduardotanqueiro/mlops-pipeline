@@ -1,10 +1,10 @@
 # api/core/config.py
-from pydantic import BaseSettings
+from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     # Default
     ENV: str = "production"
-    MODEL_PATH: str = "ckpt/model.pkl"
+    MODEL_PATH: str = "api/models/model.pkl"
     LOG_LEVEL: str = "INFO"
 
     class Config:

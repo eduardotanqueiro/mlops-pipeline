@@ -2,6 +2,7 @@
 import joblib
 from functools import lru_cache
 from api.core.config import settings
+import sklearn
 
 # Cache the loaded model to avoid reloading on every request
 @lru_cache
