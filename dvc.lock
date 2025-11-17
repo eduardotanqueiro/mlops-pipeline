@@ -32,15 +32,15 @@ stages:
     outs:
     - path: ckpt/model.pkl
       hash: md5
-      md5: d72931b82d46ba67bf7338c7792d689a
-      size: 114801
+      md5: e825f7c102ea65b84cc56f46b879b010
+      size: 126193
   evaluate:
     cmd: python model/evaluate.py
     deps:
     - path: ckpt/model.pkl
       hash: md5
-      md5: d72931b82d46ba67bf7338c7792d689a
-      size: 114801
+      md5: e825f7c102ea65b84cc56f46b879b010
+      size: 126193
     - path: data/processed_penguins_val.csv
       hash: md5
       md5: d278ca9f17d243929f15e58e38d8c52d
