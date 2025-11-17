@@ -7,4 +7,4 @@ https://www.kaggle.com/datasets/parulpandey/palmer-archipelago-antarctica-pengui
 - Build Containerized Pipeline:
 - docker build -f dvc-pipe.Dockerfile -t dvc-pipeline .
 - Run Containerized Pipeline:
-- docker run -d --rm -v ${PWD}:/app dvc-pipeline
+- docker run --rm -v ${PWD}:/app dvc-pipeline
