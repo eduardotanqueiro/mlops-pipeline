@@ -1,5 +1,5 @@
 # api/routes/predict.py
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
 from api.schemas.predict import PredictRequest, PredictResponse
 from api.services.inference import predict
 
