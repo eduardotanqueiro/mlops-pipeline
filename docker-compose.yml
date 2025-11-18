@@ -1,0 +1,10 @@
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: api.Dockerfile
+    image: penguin-api
+    container_name: penguin-api
+    ports:
+      - "8000:8080"
