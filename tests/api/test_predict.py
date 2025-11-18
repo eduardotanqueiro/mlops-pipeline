@@ -13,15 +13,12 @@ def test_predict_success(client):
     assert isinstance(data["prediction"], int)
 
 
-@pytest.mark.parametrize("values", [sys.float_info.max, -sys.float_info.max, float('inf'), float('-inf')])
+@pytest.mark.parametrize("values", [sys.float_info.max, -sys.float_info.max, 'inf', '-inf'])
 def test_predict_overflow_values(client, values):
     payload = {"features": [values, 0.0, 0.0, 0.0, 0.0, 0.0]}
-    try:
-        response = client.post("/predict", json=payload)
-    except ValueError as e:
-        pass
-    else:
-        assert response.status_code == 422
+    response = client.post("/predict", json=payload)
+
+    assert response.status_code == 422
 
 @pytest.mark.parametrize("features", [[], [None, None, None, None, None, None], None, ["string", 39.5, 16.7], [2, 39.5, "invalid", 178.0, 3250.0, 1], [2, 39.5, 16.7, 178.0], ])
 def test_predict_invalid_values(client, features):
