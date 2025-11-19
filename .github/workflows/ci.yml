@@ -1,0 +1,52 @@
+name: CI Pipeline (API)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout code
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # Setup Python
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+
+    # Cache dependencies
+    - name: Cache pip
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements_api.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    # Install dependencies
+    - name: Install dependencies
+      run: |
+        pip install --upgrade pip
+        pip install -r requirements_api.txt
+
+    # Run tests
+    - name: Run pytest
+      run: pytest -q
+
+    # Lint
+    - name: Run linter
+      run: |
+        pip install ruff
+        ruff check .
+
+    # Validate Docker build
+    - name: Build Docker image
+      run: docker build -f api.Dockerfile -t penguin-api .
+
