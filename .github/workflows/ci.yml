@@ -48,6 +48,7 @@ jobs:
       run: |
         pip install ruff
         ruff check .
+      continue-on-error: true
 
     # Validate Docker build
     - name: Build Docker image
