@@ -15,7 +15,7 @@ WORKDIR /
 COPY --from=builder /root/.local /root/.local
 COPY ./api ./api
 
-COPY ./ckpt/model.pkl ./api/models/model.pkl
+COPY ./api/ckpt/model.pkl ./api/models/model.pkl
 
 ENV PATH=/root/.local/bin:$PATH
 
