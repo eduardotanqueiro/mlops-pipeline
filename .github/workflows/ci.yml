@@ -38,7 +38,9 @@ jobs:
 
     # Run tests
     - name: Run pytest
-      run: pytest -q
+      run: |
+        pip install pytest
+        pytest -q
 
     # Lint
     - name: Run linter
