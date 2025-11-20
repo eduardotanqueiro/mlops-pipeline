@@ -88,7 +88,7 @@ Evaluation & metric validation
     
     cd mlops-pipeline
     ```
-3) Download the dataset and place the  ```penguins_size.csv``` in the `data/raw/` directory.
+3) Download the dataset and place the  ```penguins_size.csv``` in the `/data` directory.
     - In a real production environment, this would be done with ```dvc pull``` from a remote storage. However, for educational purposes, only local storage was used in this project
 
 4) Build and Run DVC Training and Evaluation Pipeline in a Containerized Environment
