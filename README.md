@@ -82,16 +82,16 @@ Evaluation & metric validation
 - Install [Docker](https://docs.docker.com/get-docker/)
 - Install Git
 
-1) Clone the Repository
+2) Clone the Repository
     ```bash 
     git clone https://github.com/eduardotanqueiro/mlops-pipeline.git
     
     cd mlops-pipeline
     ```
-2) Download the dataset and place the  ```penguins_size.csv``` in the `data/raw/` directory.
+3) Download the dataset and place the  ```penguins_size.csv``` in the `data/raw/` directory.
     - In a real production environment, this would be done with ```dvc pull``` from a remote storage. However, for educational purposes, only local storage was used in this project
 
-3) Build and Run DVC Training and Evaluation Pipeline in a Containerized Environment
+4) Build and Run DVC Training and Evaluation Pipeline in a Containerized Environment
     ```bash
     docker build -f dvc-pipe.Dockerfile -t dvc-pipeline .
 
@@ -99,7 +99,7 @@ Evaluation & metric validation
 
     cp ckpt/model.pkl api/models/model.pkl
     ```
-4) Build and Run the API localy in a Containerized Environment
+5) Build and Run the API localy in a Containerized Environment
     ```bash
     docker compose up
     ```
